@@ -1,0 +1,40 @@
+<modal-header></modal-header>
+
+<ion-content color="tertiary">
+    <div class="container regular page-login">
+        <div class="box">
+            <div text-center>
+                <img class="img-login" src="../../../../assets/imgs/fatapp.png">
+            </div>
+            <form [formGroup]="loginForm">
+                <ion-grid>
+                    <ion-row padding-bottom>
+                        <ion-col size="4" class="border-bottom">
+                        </ion-col>
+                        <ion-col size="4">
+                            <div class="page-title" text-center>Login</div>
+                        </ion-col>
+                        <ion-col size="4" class="border-bottom">
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-input formControlName="email" type="text" placeholder="E-mail: "></ion-input>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-input formControlName="password" type="password" placeholder="Senha: "></ion-input>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <div text-center>
+                    <div text-center padding-bottom (click)="forgotPassword()">Esqueceu a senha?</div>
+                    <ion-button class="btn-login" (click)="submit()">Entrar</ion-button>
+                </div>
+            </form>
+        </div>
+        <div padding-top text-center>
+            <div>Ainda não possui cadastro?</div>
+            <div>Entre em contato com a Coordenação da sua instituição.</div>
+        </div>
+    </div>
+</ion-content>

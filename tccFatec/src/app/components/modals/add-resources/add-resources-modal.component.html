@@ -1,0 +1,44 @@
+<modal-header title="Adicionar/alterar recurso"></modal-header>
+<ion-content color="tertiary">
+    <div class="container">
+        <span *ngIf="resources">
+            <form [formGroup]="addResourceForm" padding-top class="box">
+                <div text-center>
+                    <img class="page-icon" src="../../../../assets/imgs/tools.png">
+                </div>
+                <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <ion-select formControlName="name" placeholder="Recurso">
+                                    <ion-select-option  *ngFor="let resource of resources">{{resource.name}}</ion-select-option>
+                                </ion-select>
+                                <ng-container *ngFor="let validation of validationMessages.resource">
+                                    <div class="error-message"
+                                        *ngIf="addResourceForm.get('resource').hasError(validation.type) && (addResourceForm.get('resource').dirty || addResourceForm.get('resource').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-input formControlName="resource_amount" placeholder="Quantidade"></ion-input>
+                                <ng-container *ngFor="let validation of validationMessages.resource_amount">
+                                    <div class="error-message"
+                                        *ngIf="addResourceForm.get('resource_amount').hasError(validation.type) && (addResourceForm.get('resource_amount').dirty || addResourceForm.get('resource_amount').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container>
+                            </ion-col>
+                        </ion-row>
+                </ion-grid>
+                <div padding-top padding-bottom text-center>
+                    <ion-button text-center (click)="submit()">Adicionar/alterar recurso</ion-button>
+                </div>
+            </form>
+        </span>
+        <ion-col *ngIf="!resources">
+            <div> Não há recursos cadastrados</div>
+        </ion-col>
+    </div>
+</ion-content>

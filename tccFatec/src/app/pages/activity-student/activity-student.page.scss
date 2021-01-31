@@ -1,0 +1,55 @@
+.box-present-list{
+    background-color: white;
+    border: 1px solid var(--ion-color-secondary);
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  .users-present-list{
+    font-size: 0.7rem;
+  }
+
+.header .col {
+    background-color:#696969;
+    color: white;
+}
+.box-present-list{
+    width: 100%;
+}
+
+.label-fixed.sc-ion-label-md-h {
+    -ms-flex: 0 0 100px;
+    flex: 0 0 35px;
+    width: 100px;
+     min-width: 0px;
+     max-width: 200px;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    text-align: center;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}
+
+.aligner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qr-code-img{
+    height:70px;
+}
+
+.aligner-qr-code{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+}

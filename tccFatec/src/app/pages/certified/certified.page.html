@@ -1,0 +1,65 @@
+<main-header></main-header>
+<ion-content color="tertiary">
+  <div class="container">
+      <h1 class="page-title">Cadastrar certificado</h1>
+    <form [formGroup]="certifiedForm" class="box ion-padding-top">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>
+              Nome do certificado:
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input formControlName="name" placeholder="Exemplo: Fatecday 2019">
+            </ion-input>
+            <ng-container *ngFor="let validation of validationMessages.name">
+              <div class="error-message"
+                *ngIf="certifiedForm.get('name').hasError(validation.type) && (certifiedForm.get('name').dirty || certifiedForm.get('name').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>
+              Certificado:
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <input formControlName="certified" (change)="selectCertified($event)" type="file"  accept=".docx" >
+            <ng-container *ngFor="let validation of validationMessages.certified">
+              <div class="error-message"
+                *ngIf="certifiedForm.get('certified').hasError(validation.type) && (certifiedForm.get('certified').dirty || certifiedForm.get('certified').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="ion-padding-top ion-padding-bottom ion-text-center">
+        <ion-button class="ion-text-center" (click)="submit()">Cadastrar modelo</ion-button>
+      </div>
+    </form>
+
+    <div *ngIf="!certifieds">
+        Nenhum certificado cadastrado!
+    </div>
+
+    <div *ngIf="certifieds && certifieds != ''" class="ion-padding-top">
+      <div class="page-title">Certificados já cadastrados</div>
+      <ion-list *ngFor="let certified of certifieds">
+        <ion-item>
+          <ion-label>{{certified.name}}</ion-label>
+          <ion-icon (click)="removeCertified(certified.id)" ios="ios-remove-circle" md="md-remove-circle" slot="end">
+          </ion-icon>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

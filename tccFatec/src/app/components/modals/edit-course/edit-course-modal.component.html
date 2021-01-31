@@ -1,0 +1,53 @@
+<modal-header title="Editar público-alvo"></modal-header>
+<ion-content color="tertiary">
+  <div class="container">
+    <form [formGroup]="editCourseForm" class="box ion-padding-top">
+      <div text-center>
+        <img class="page-icon" src="../../../../assets/imgs/course.png">
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>
+              Nome do público alvo/curso:
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input [(ngModel)]="passedCourse.name" formControlName="name" placeholder="Público alvo / curso">
+            </ion-input>
+            <ng-container *ngFor="let validation of validationMessages.name">
+              <div class="error-message"
+                *ngIf="editCourseForm.get('name').hasError(validation.type) && (editCourseForm.get('name').dirty || editCourseForm.get('name').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>
+              Sigla:
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input [(ngModel)]="passedCourse.acronym" formControlName="acronym" placeholder="Exemplo: ADS, se não houver sigla digite outros">
+            </ion-input>
+            <ng-container *ngFor="let validation of validationMessages.acronym">
+              <div class="error-message"
+                *ngIf="editCourseForm.get('acronym').hasError(validation.type) && (editCourseForm.get('acronym').dirty || editCourseForm.get('acronym').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="ion-padding-top ion-padding-bottom ion-text-center">
+        <ion-button class="ion-text-center" (click)="submit()">Editar público-alvo</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

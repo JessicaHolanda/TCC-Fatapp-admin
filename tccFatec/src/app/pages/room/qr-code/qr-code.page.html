@@ -1,0 +1,12 @@
+<page-header></page-header>
+<ion-content>
+  <div *ngIf="activity" class="ion-text-center">
+    <h1>{{activity.title}}</h1>
+    <div>{{activity.speaker.speakerName}}</div>
+    <div>{{activity.formatedInitialTime}} - {{activity.formatedFinalTime}}</div>
+    <div>{{activity.room.type}} - {{activity.room.name}}</div>
+    <div class="ion-padding-top ion-text-center">
+      <img class="img-qr-code" [attr.src]="imgVar | secureimages | async" />
+    </div>
+  </div>
+</ion-content>

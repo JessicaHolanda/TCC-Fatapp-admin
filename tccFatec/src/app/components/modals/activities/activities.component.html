@@ -1,0 +1,55 @@
+<modal-header title="Pesquisar atividades"></modal-header>
+<ion-content color="tertiary">
+
+
+  <div class="container">
+    <h1 class="page-title">Pesquisar atividades</h1>
+    <form [formGroup]="activitySearchForm">
+      <ion-grid class="box">
+        <ion-row>
+          <ion-col>
+            <ion-label position="fixed">Pesquisar:</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    <div class="ion-text-center">
+      <ion-button class="btn-activity" (click)="getActivitySearch()">Pesquisar</ion-button>
+    </div>
+  </div>
+
+
+  <br>
+  <div class="container">
+    <div>Clique na atividade para selecioná-la</div>
+    <ion-grid class="box">
+      <ion-row class="row header activity">
+        <ion-col class="col" size="3">Título</ion-col>
+        <ion-col class="col" size="3">Palestrante</ion-col>
+        <ion-col class="col" size="3">Data</ion-col>
+        <ion-col class="col" size="3">Local</ion-col>
+      </ion-row>
+
+      <span *ngIf="activities">
+        <span *ngIf="!activitySearch || activitySearch == ''">
+          <ion-row *ngFor="let row of activities" (click)="selectActivity(row)" class="row activity">
+            <ion-col class="col" size="3">{{row.title}}</ion-col>
+            <ion-col class="col" size="3">{{row.speaker.speakerName}}</ion-col>
+            <ion-col class="col" size="3">{{row.formatedInitialTime}}</ion-col>
+            <ion-col class="col" size="3">{{row.room.type}}<span> {{row.room.name}}</span></ion-col>
+          </ion-row>
+        </span>
+      </span>
+
+      <span *ngIf="activitySearch">
+            <ion-row *ngFor="let row of activitySearch" (click)="selectactivity(row)" class="row activitys">
+              <ion-col class="col" size="3">{{row.title}}</ion-col>
+              <ion-col class="col" size="3">{{row.speaker.speakerName}}</ion-col>
+              <ion-col class="col" size="3">{{row.formatedInitialTime}}</ion-col>
+              <ion-col class="col" size="3">{{row.room.type}}<span> {{row.room.name}}</span></ion-col>
+          </ion-row>
+        </span>
+    </ion-grid>
+  </div>
+</ion-content>

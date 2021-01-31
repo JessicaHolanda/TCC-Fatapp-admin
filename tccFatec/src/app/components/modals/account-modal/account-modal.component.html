@@ -1,0 +1,96 @@
+<modal-header title="Editar perfil"></modal-header>
+<ion-content color="tertiary">
+    <div *ngIf="user" class="container">
+        <form [formGroup]="accountForm">
+            <ion-grid padding-top class="box">
+                <ion-row *ngIf="user.image">
+                    <ion-col>
+                        <div text-center>
+                            <img class="avatar account" src="{{user.image}}">
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="10">
+
+                        <ion-input formControlName="name" placeholder="Nome"
+                                   [(ngModel)]="user.name">
+                        </ion-input>
+
+                        <ng-container *ngFor="let validation of validationMessages.name">
+
+                            <div class="error-message"
+                                 *ngIf="accountForm.get('name').hasError(validation.type) && (accountForm.get('name').dirty || accountForm.get('name').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                    <ion-col size="2">
+                        <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="10">
+                        <ion-input formControlName="last_name" placeholder="Sobrenome"
+                                   [(ngModel)]="user.last_name"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.last_name">
+                            <div class="error-message"
+                                 *ngIf="accountForm.get('last_name').hasError(validation.type) && (accountForm.get('last_name').dirty || accountForm.get('last_name').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                    <ion-col size="2">
+                        <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="10">
+                        <ion-input formControlName="email" placeholder="E-mail"
+                                   [(ngModel)]="user.email"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.email">
+                            <div class="error-message"
+                                 *ngIf="accountForm.get('email').hasError(validation.type) && (accountForm.get('email').dirty || accountForm.get('email').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                    <ion-col size="2">
+                        <div><fa-icon slot="start" [icon]="['fas', 'edit']"></fa-icon></div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="10">
+                        <ion-input formControlName="cpf" placeholder="CPF" [brmasker]="{person: true}" [(ngModel)]="user.cpf">
+
+                        </ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.cpf">
+                            <div class="error-message"
+                                 *ngIf="accountForm.get('cpf').hasError(validation.type) && (accountForm.get('cpf').dirty || accountForm.get('cpf').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                    <ion-col size="2">
+                        <div><fa-icon slot="end" [icon]="['fas', 'edit']"></fa-icon></div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <p><span (click)="goToChangePassword()">Alterar senha</span></p>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <div text-center class="update-account">
+                            <ion-button (click)="updateUserData()">Alterar </ion-button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>
+
+
+

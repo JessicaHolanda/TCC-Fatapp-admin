@@ -1,0 +1,107 @@
+<main-header title="Salas"></main-header>
+<ion-content color="tertiary">
+    <div padding-top class="container">
+        <ion-radio-group padding-top>
+            <ion-grid text-center>
+                <ion-row>
+                    <ion-col>
+                        <div>
+                            <ion-radio (click)="filterRoom('Sala')"></ion-radio>
+                        </div>
+                        <div>
+                            <ion-label>Salas</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div>
+                            <ion-radio (click)="filterRoom('Laboratório')"></ion-radio>
+                        </div>
+                        <div>
+                            <ion-label>Laboratórios</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div>
+                            <ion-radio (click)="filterRoom('Auditório')"></ion-radio>
+                        </div>
+                        <div>
+                            <ion-label>Auditórios</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div (click)="goToAddRoomModal()">
+                            <ion-icon class="add-room" name="add-circle"></ion-icon>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-radio-group>
+
+        <div class="ion-text-center ion-padding-top" *ngIf="!roomsSearch || roomsSearch == ''">
+            <div *ngIf="!rooms || rooms == ''">
+                Não há salas registradas.
+            </div>
+        </div>
+
+        <div *ngIf="rooms">
+            <div *ngIf="!roomsSearch || roomsSearch == ''">
+                <ion-card class="room-info" *ngFor="let room of rooms">
+                    <ion-item>
+                        <ion-icon *ngIf="room.type == 'Sala'" name="paper-plane" slot="start"></ion-icon>
+                        <ion-icon *ngIf="room.type == 'Laboratório'" ios="ios-desktop" md="md-desktop" slot="start">
+                        </ion-icon>
+                        <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
+                        </ion-icon>
+                        <ion-label><span>{{room.type}} </span>{{room.name}}</ion-label>
+                        <ion-button class="btn-option" (click)="goToCalendar(room.id)" fill="outline" slot="end">Agendar
+                            atividade</ion-button>
+                    </ion-item>
+                    <ion-card-content>
+                        <div>
+                            <div>
+                                <div><span>Capacidade: </span>{{room.capacity}}</div>
+                                <div *ngFor="let resource of room.resources">
+                                    <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
+                                        <span>{{resource.amount}}</span></span>
+                                </div>
+                            </div>
+                            <span (click)="goToEditRoom(room.id)" class="ion-float-right">
+                                <ion-icon class="edit-room" name="create"></ion-icon>
+                            </span>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+            <div *ngIf="roomsSearch">
+                <ion-card class="room-info" *ngFor="let room of roomsSearch">
+                    <ion-item>
+                        <ion-icon *ngIf="room.type == 'Sala'" name="paper-plane" slot="start"></ion-icon>
+                        <ion-icon *ngIf="room.type == 'Laboratório'" ios="ios-desktop" md="md-desktop" slot="start">
+                        </ion-icon>
+                        <ion-icon *ngIf="room.type == 'Auditório'" ios="ios-people" md="md-people" slot="start">
+                        </ion-icon>
+                        <ion-label><span>{{room.type}} </span>{{room.name}}</ion-label>
+                        <ion-button class="btn-option" (click)="goToCalendar(room.id)" fill="outline" slot="end">Agendar
+                            atividade</ion-button>
+                    </ion-item>
+                    <ion-card-content>
+                        <div>
+                            <div>
+                                <div><span>Capacidade: </span>{{room.capacity}}</div>
+                                <div *ngFor="let resource of room.resources">
+                                    <strong><span>{{resource.resource.name}}</span></strong><span> Qtd:
+                                        <span>{{resource.amount}}</span></span>
+                                </div>
+                            </div>
+                            <span (click)="goToEditRoom(room.id)" float-right>
+                                <ion-icon class="edit-room" name="create"></ion-icon>
+                            </span>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+
+
+    </div>
+</ion-content>

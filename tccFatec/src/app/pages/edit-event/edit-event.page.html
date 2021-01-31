@@ -1,0 +1,130 @@
+<main-header></main-header>
+
+<ion-content color="tertiary">
+
+  <div class="container">
+    <h1 class="page-title">Editar evento</h1>
+    <form [formGroup]="formEvent">
+      <ion-grid class="box">
+        <div text-center>
+          <img class="page-icon" src="../../../assets/imgs/edit-event.jpeg">
+        </div>
+
+        <ion-row>
+          <ion-col>
+            <ion-button class="btn-search" (click)="openEventsModal()">Consultar evento</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">Evento*: </ion-label>
+              <ion-input disabled class="edit-form" [(ngModel)]="title" formControlName="title" placeholder="Título">
+              </ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.title">
+              <div class="error-message"
+                *ngIf="formEvent.get('title').hasError(validation.type) && (formEvent.get('title').dirty || formEvent.get('title').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">Edição*: </ion-label>
+              <ion-input disabled class="edit-form" [(ngModel)]="edition" formControlName="edition"
+                placeholder="Edição"></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.edition">
+              <div class="error-message"
+                *ngIf="formEvent.get('edition').hasError(validation.type) && (formEvent.get('edition').dirty || formEvent.get('edition').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+              <ion-item lines="none">
+                <ion-label position="fixed">Descrição*: </ion-label>
+                <ion-input disabled class="edit-form" [(ngModel)]="description" formControlName="description" ></ion-input>
+              </ion-item>
+              <ng-container *ngFor="let validation of validationMessages.description">
+                <div class="error-message"
+                  *ngIf="formEvent.get('description').hasError(validation.type) && (formEvent.get('description').dirty || formEvent.get('description').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">De*: </ion-label>
+              <ion-input disabled class="edit-form" [(ngModel)]="initialDate" [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 11/08/2019-07:00" formControlName="initialDate"></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.initialDate">
+              <div class="error-message"
+                *ngIf="formEvent.get('initialDate').hasError(validation.type) && (formEvent.get('initialDate').dirty || formEvent.get('initialDate').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+                <ion-label position="fixed">Até*: </ion-label>
+              <ion-input disabled class="edit-form" [(ngModel)]="finalDate" [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 11/08/2019-07:00" formControlName="finalDate"></ion-input>       
+            </ion-item>
+            <ng-container *ngFor="let validation of validationMessages.finalDate">
+              <div class="error-message"
+                *ngIf="formEvent.get('finalDate').hasError(validation.type) && (formEvent.get('finalDate').dirty || formEvent.get('finalDate').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+              <ion-item lines="none">
+                <ion-label position="fixed">Certificado* </ion-label>
+                <div *ngIf="!certifieds || certifieds == ''">Cadastre antes um certificado para esse evento</div>
+                <ion-select *ngIf="certifieds" formControlName="certified">
+                  <ion-select-option value="{{certified.id}}" *ngFor="let certified of certifieds">
+                    {{certified.name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ng-container *ngFor="let validation of validationMessages.certified">
+                <div class="error-message"
+                  *ngIf="formEvent.get('certified').hasError(validation.type) && (formEvent.get('certified').dirty || formEvent.get('certified').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label class="banner">Banner*: </ion-label>
+            </ion-item>
+            <input disabled class="edit-form" formControlName="banner" (change)="selectBanner($event)" type="file" accept="image/*">
+          </ion-col>
+        </ion-row>
+        <div>
+          <ion-button class="btn-block" (click)="upload()">Alterar evento</ion-button>
+          <ion-button class="btn-block" (click)="removeEvent()">Remover evento</ion-button>
+          <ion-button class="btn-block" (click)="resetInputs()">Limpar campos</ion-button>
+        </div>
+      </ion-grid>
+    </form>
+
+  </div>
+
+</ion-content>

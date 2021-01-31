@@ -1,0 +1,190 @@
+<page-header title="Registrar atividade"></page-header>
+<ion-content color="tertiary">
+    <div class="container">
+        <form [formGroup]="activityForm">
+
+            <ion-grid class="box">
+                <ion-row>
+                    <ion-col>
+                        <div>Dados da atividade</div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Palestrante*: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input disabled [(ngModel)]="this.speakerEmail" formControlName="speakerEmail"></ion-input>
+                        <div class="info">Certifique-se de que o palestrante já está cadastrado</div>
+                        <ng-container *ngFor="let validation of validationMessages.speakerEmail">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('speakerEmail').hasError(validation.type) && (activityForm.get('speakerEmail').dirty || activityForm.get('speakerEmail').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button class="btn-search" (click)="openSpeakersModal()">Consultar palestrantes</ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Evento*: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input disabled [(ngModel)]="this.eventTitle" formControlName="eventTitle"></ion-input>
+                        <div class="info">Certifique-se de que o evento já está cadastrado</div>
+                        <ng-container *ngFor="let validation of validationMessages.title">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('speakerEmail').hasError(validation.type) && (activityForm.get('speakerEmail').dirty || activityForm.get('speakerEmail').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-button class="btn-search" (click)="openEventsModal()">Consultar eventos</ion-button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Título*: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input formControlName="title"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.title">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('title').hasError(validation.type) && (activityForm.get('title').dirty || activityForm.get('title').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col class="ion-padding" size="6">
+                        <ion-label>Tipo*:</ion-label>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Palestra" type="radio" name="type">
+                            <label>Palestra</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Mesa redonda" type="radio" name="type">
+                            <label>Mesa redonda</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Workshop" type="radio" name="type">
+                            <label>Workshop</label>
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Minicurso" type="radio" name="type">
+                            <label>Minicurso</label>
+                        </div>
+                        <div class="ion-padding-top">
+                            <input formControlName="type" value="Outro" type="radio" name="type">
+                            <label>Outro</label>
+                        </div>
+                    </ion-col>
+                    <ng-container *ngFor="let validation of validationMessages.type">
+                        <div class="error-message"
+                            *ngIf="activityForm.get('type').hasError(validation.type) && (activityForm.get('type').dirty || activityForm.get('type').touched)">
+                            {{ validation.message }}
+                        </div>
+                    </ng-container>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Público-alvo*: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col class="ion-padding" size="8">
+                        <ion-select multiple='true' formControlName="targetAudience">
+                            <ion-select-option *ngFor="let target of targetAudience" value="{{target.id}}">{{target.name}}
+                            </ion-select-option>
+                        </ion-select>
+                        <ng-container *ngFor="let validation of validationMessages.targetAudience">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('targetAudience').hasError(validation.type) && (activityForm.get('targetAudience').dirty || activityForm.get('targetAudience').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>De*: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 11/08/2019 07:00" formControlName="initialDate"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.initialDate">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('initialDate').hasError(validation.type) && (activityForm.get('initialDate').dirty || activityForm.get('initialDate').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Até*: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-input [brmasker]="{mask:'00/00/0000 00:00', len:16}" placeholder="Exemplo: 11/08/2019 07:00" formControlName="finalDate"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.finalDate">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('finalDate').hasError(validation.type) && (activityForm.get('finalDate').dirty || activityForm.get('finalDate').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-item lines="none">
+                            <ion-label>Descrição*: </ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="8">
+                        <textarea formControlName="description"></textarea>
+                        <ng-container *ngFor="let validation of validationMessages.description">
+                            <div class="error-message"
+                                *ngIf="activityForm.get('description').hasError(validation.type) && (activityForm.get('description').dirty || activityForm.get('description').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+
+
+            </ion-grid>
+            <div class="ion-padding-bottom">
+                <ion-button class="btn-submit" (click)="submit()">Cadastrar atividade</ion-button>
+            </div>
+        </form>
+    </div>
+
+
+</ion-content>

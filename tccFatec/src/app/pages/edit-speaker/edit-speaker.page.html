@@ -1,0 +1,126 @@
+<main-header></main-header>
+
+<ion-content color="tertiary">
+  <div class="container">
+    <h1 class="page-title"> Editar palestrante</h1>
+    <form [formGroup]="editSpeakerForm">
+      <ion-grid class="box">
+        <ion-row>
+          <ion-col>
+            <div *ngIf="!pictureSpeaker || pictureSpeaker == ''" class="ion-text-center">
+              <img class="speaker-picture" src="../../../../assets/imgs/edit-speaker.jpeg">
+            </div>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col>
+            <div>Dados do palestrante</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+              <ion-button class="btn-search" (click)="openSpeakersModal()">Consultar palestrante</ion-button>
+          </ion-col>
+      </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">E-mail*: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [(ngModel)]="emailSpeaker" formControlName="speakerEmail"></ion-input>
+            <ng-container *ngFor="let validation of validationMessages.speakerEmail">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerEmail').hasError(validation.type) && (editSpeakerForm.get('speakerEmail').dirty || editSpeakerForm.get('speakerEmail').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Nome*: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [(ngModel)]="nameSpeaker" formControlName="speakerName"></ion-input>
+            <ng-container *ngFor="let validation of validationMessages.speakerName">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerName').hasError(validation.type) && (editSpeakerForm.get('speakerName').dirty || editSpeakerForm.get('speakerName').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Telefone*: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [brmasker]="{phone: true}" [(ngModel)]="phoneSpeaker" formControlName="speakerPhone"></ion-input>
+            <ng-container *ngFor="let validation of validationMessages.speakerPhone">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerPhone').hasError(validation.type) && (editSpeakerForm.get('speakerPhone').dirty || editSpeakerForm.get('speakerPhone').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Telefone alternativo: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <ion-input disabled class="edit-form" [brmasker]="{phone: true}" [(ngModel)]="phone2Speaker" formControlName="speakerPhone2"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Resumo CV*: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <textarea disabled class="edit-form" [(ngModel)]="curriculumSpeaker" formControlName="speakerCurriculum" ></textarea>
+            <ng-container *ngFor="let validation of validationMessages.speakerCurriculum">
+              <div class="error-message"
+                *ngIf="editSpeakerForm.get('speakerCurriculum').hasError(validation.type) && (editSpeakerForm.get('speakerCurriculum').dirty || editSpeakerForm.get('speakerCurriculum').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label class="ion-padding-right">Foto: </ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="8">
+            <input type="file" accept="image/*" (change)="onFileSelect($event)">
+          </ion-col>
+        </ion-row>
+        <div class="ion-padding-bottom">
+          <ion-button (click)="submit()">Alterar palestrante</ion-button>
+          <ion-button (click)="removeSpeaker()">Remover palestrante</ion-button>
+          <ion-button (click)="resetInputs()">Limpar campos</ion-button>
+        </div>
+      </ion-grid>
+    </form>
+
+  </div>
+</ion-content>

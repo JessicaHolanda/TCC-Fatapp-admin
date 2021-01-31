@@ -1,0 +1,33 @@
+.box-access-control{
+    background-color: white;
+    border: 1px solid var(--ion-color-secondary);
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  .btn-access-control{
+    width: 50%;
+    border-radius: 0;
+  }
+
+  .users-access-control{
+    font-size: 0.7rem;
+  }
+
+.header .col {
+    background-color:#696969;
+    color: white;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}

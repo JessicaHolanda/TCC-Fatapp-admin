@@ -1,0 +1,70 @@
+ion-input {
+  background-color: white;
+  padding: 1rem;
+  overflow: visible;
+  border: 1px solid var(--ion-color-secondary) !important;
+  .native-input.sc-ion-input-md{
+    font-size: 14px;
+    background-color: white;
+  }
+}
+
+ion-select{
+  background-color: white;
+  overflow: visible;
+  border: 1px solid var(--ion-color-secondary) !important;
+}
+
+textarea{
+  width: 100%;
+  height: 7rem;
+  overflow: auto;
+  border: 1px solid var(--ion-color-secondary);
+  margin: 0 1%;
+}
+
+.header-icon{
+  ion-icon[_ngcontent-ydu-c1] {
+    font-size: 22px;
+  }
+  ion-icon{
+    font-size: 22px;
+  }
+}
+
+ion-datetime{
+  border: 1px solid var(--ion-color-secondary);
+  font-size: 12px;
+  text-align: left;
+  height: 2rem;
+  width: 100%;
+  padding: 10px 8px;
+}
+
+// Checkbox
+input[type=checkbox], input[type='radio'] {
+  appearance: none;
+  background: #F0F0F0;
+  border-radius: 6px;
+  width: 23px;
+  height: 23px;
+  margin-right: 10px;
+  &:checked{
+    &:before{
+      content: '\2713\0020';
+      font-size: 20px;
+      color: white;
+      width: 23px;
+      height: 23px;
+      margin-right: 10px;
+      background: var(--ion-color-primary);
+      border-radius: 6px;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle
+    }
+  }
+  &:focus{
+    outline: none;
+  }
+}

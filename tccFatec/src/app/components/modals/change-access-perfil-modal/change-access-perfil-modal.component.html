@@ -1,0 +1,43 @@
+<modal-header title="Alterar perfil de acesso"></modal-header>
+
+<ion-content color="tertiary">
+    <div class="container">
+        <h1 class="page-title">Alterar perfil de acesso</h1>
+        <div class="box">
+            <ion-item>
+                <ion-label><span>{{passedUser.name}}</span><span> {{passedUser.last_name}}</span></ion-label>
+                <ion-thumbnail slot="start">
+                    <img src='{{passedUser.image}}'>
+                </ion-thumbnail>
+            </ion-item>
+            <ion-item>
+                <ion-label>E-mail: <span>{{passedUser.email}}</span></ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>CPF: <span>{{passedUser.cpf}}</span></ion-label>
+            </ion-item>
+
+            <form [formGroup]="changeAccessPerfilForm">
+                <ion-item>
+                    <div class="input-select">
+                        <ion-select formControlName="user_type" placeholder="Tipo de usuário"
+                            [(ngModel)]="passedUser.user_type">
+                            <ion-select-option value="Administrador">Administrador</ion-select-option>
+                            <ion-select-option value="Comum">Comum</ion-select-option>
+                            <ion-select-option value="Bloqueado">Bloqueado</ion-select-option>
+                        </ion-select>
+                        <ng-container *ngFor="let validation of validationMessages.user_type">
+                            <div class="error-message"
+                                *ngIf="changeAccessPerfilForm.get('user_type').hasError(validation.type) && (changeAccessPerfilForm.get('user_type').dirty || changeAccessPerfilForm.get('user_type').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </div>
+                </ion-item>
+                <div padding-top text-center>
+                    <ion-button (click)="update()">Alterar</ion-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ion-content>

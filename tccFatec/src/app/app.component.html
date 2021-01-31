@@ -1,0 +1,163 @@
+<ion-app>
+    <ion-split-pane>
+        <ion-menu type="overlay">
+            <ion-header padding-top *ngIf="!user">
+                <div class="container">
+                    <div text-center>
+                        <img class="logo" src="../assets/imgs/fatapp.png">
+                    </div>
+                    <div padding-bottom text-center>
+                        <ion-button (click)="goToLogin()">Acessar</ion-button>
+                    </div>
+                </div>
+            </ion-header>
+            <div class="user-background">
+                <ion-header *ngIf="user">
+                    <ion-item class="user-background" lines="none">
+                        <div *ngIf="!user.image || user.image == ''">
+                            <img class="avatar" src="../assets/imgs/defaultAvatar.png">
+                        </div>
+                        <div *ngIf="user.image">
+                            <img class="avatar" src="{{user.image}}">
+                        </div>
+                        <ion-label>
+                            <div class="user-infos">
+                                <div><span>Olá, </span><span>{{user.name}}</span></div>
+                                <div class="user-type">{{user.user_type}}</div>
+                            </div>
+                            <div class="user-options user-edit" margin-top (click)="goToAccount()">Editar</div>
+                            <div class="user-options user-logout" (click)="logout()">Logout</div>
+                        </ion-label>
+
+                    </ion-item>
+                </ion-header>
+            </div>
+
+
+            <ion-content color="tertiary">
+                <span *ngIf="user">
+                    <span *ngIf="user.user_type == 'Administrador'">
+                        <ion-card *ngIf="user">
+                            <ion-card-header>
+                                <ion-card-subtitle>Menu do usuário</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-list lines="none">
+                                    <ion-menu-toggle auto-hide="false" *ngFor="let p of userMenu">
+                                        <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
+                                            <ion-label>
+                                                {{p.title}}
+                                            </ion-label>
+                                        </ion-item>
+                                    </ion-menu-toggle>
+                                </ion-list>
+
+
+                            </ion-card-content>
+                        </ion-card>
+
+                        <ion-card *ngIf="user">
+                            <ion-card-header>
+                                <ion-card-subtitle>Eventos</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-list lines="none">
+                                    <ion-menu-toggle auto-hide="false" *ngFor="let p of eventMenu">
+                                        <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
+                                            <ion-label>
+                                                {{p.title}}
+                                            </ion-label>
+                                        </ion-item>
+                                    </ion-menu-toggle>
+                                </ion-list>
+
+
+                            </ion-card-content>
+                        </ion-card>
+
+                        <ion-card *ngIf="user">
+                            <ion-card-header>
+                                <ion-card-subtitle>Palestrantes</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-list lines="none">
+                                    <ion-menu-toggle auto-hide="false" *ngFor="let p of speakerMenu">
+                                        <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
+                                            <ion-label>
+                                                {{p.title}}
+                                            </ion-label>
+                                        </ion-item>
+                                    </ion-menu-toggle>
+                                </ion-list>
+
+
+                            </ion-card-content>
+                        </ion-card>
+
+                        <ion-card *ngIf="user">
+                            <ion-card-header>
+                                <ion-card-subtitle>Salas e atividades</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-list lines="none">
+                                    <ion-menu-toggle auto-hide="false" *ngFor="let p of roomActivityMenu">
+                                        <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
+                                            <ion-label>
+                                                {{p.title}}
+                                            </ion-label>
+                                        </ion-item>
+                                    </ion-menu-toggle>
+                                </ion-list>
+
+
+                            </ion-card-content>
+                        </ion-card>
+                    </span>
+                </span>
+                <span *ngIf="user">
+                    <span *ngIf="user.user_type === 'Comum'">
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-subtitle>Menu</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-list lines="none">
+                                    <ion-menu-toggle auto-hide="false" *ngFor="let p of comumLinks">
+                                        <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
+                                            <ion-label>
+                                                {{p.title}}
+                                            </ion-label>
+                                        </ion-item>
+                                    </ion-menu-toggle>
+                                </ion-list>
+                            </ion-card-content>
+                        </ion-card>
+                    </span>
+                </span>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>Geral</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+
+                        <ion-list lines="none">
+                            <ion-menu-toggle auto-hide="false" *ngFor="let p of generalLinks">
+                                <ion-item class="menu-item" [routerLink]="[p.url]" detail="false">
+                                    <ion-label>
+                                        {{p.title}}
+                                    </ion-label>
+                                </ion-item>
+                            </ion-menu-toggle>
+                        </ion-list>
+                    </ion-card-content>
+                </ion-card>
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet main></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

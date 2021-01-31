@@ -1,0 +1,75 @@
+@media (min-width: 600px)
+{
+  .banner{
+    max-width: 600px;
+  }
+}
+.border{
+  border-bottom: 1px var(--ion-color-primary) solid;
+  width: 80%;
+  text-align: right;
+}
+
+.welcome{
+  width:60%;
+  
+}
+
+.container{
+  display:flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.text-welcome{
+  line-height: 200%;
+  margin: 55px;
+}
+
+.head{
+  margin: 10px;
+  background-color: var(--ion-color-primary);
+  margin-bottom: 30px;
+}
+
+.body{
+  margin: 5px;
+  margin-top: -2px;
+  height: 100%;
+}
+
+.title-layout{
+  height: 40px;
+}
+
+.title-text{
+  font-size: 25px;
+  color: white;
+  
+}
+.manual-text{
+  margin: 4px;
+  line-height: 200%;
+}
+
+.icon-title{
+  width: 35px;
+  height: 35px;
+  margin: 3px;
+}
+
+.title-text-manual{
+  text-align: center;
+  // background-color: var(--ion-color-scrum-master);
+  
+  margin: 10px;
+}
+
+.image-controlesala{
+  height: 40%;
+  width: 50%;
+}
+
+.Text-Seeimage{
+  background-color: indianred;
+}

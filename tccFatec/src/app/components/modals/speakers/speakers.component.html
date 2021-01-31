@@ -1,0 +1,54 @@
+<modal-header title="Palestrantes"></modal-header>
+
+<ion-content color="tertiary">
+  <div class="container">
+    <h1 class="page-title">Pesquisar palestrantes</h1>
+    <form [formGroup]="speakerSearchForm">
+      <ion-grid class="box">
+        <ion-row>
+          <ion-col>
+            <ion-label position="fixed">Pesquisar:</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    <div class="ion-text-center">
+      <ion-button class="btn-speakers" (click)="getSpeakerSearch()">Pesquisar</ion-button>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div>Clique no palestrante para selecioná-lo</div>
+    <ion-grid class="box">
+      <ion-row class="row header speakers">
+        <ion-col class="col" size="4">Nome</ion-col>
+        <ion-col class="col" size="4">E-mail</ion-col>
+        <ion-col class="col" size="4">Telefone</ion-col>
+      </ion-row>
+
+      <span *ngIf="!speakers || speakers == ''">
+        <div>Você ainda não cadastrou nenhum palestrante.</div>
+      </span>
+
+      <span *ngIf="speakers">
+        <span *ngIf="!speakerSearch || speakerSearch == ''">
+          <ion-row *ngFor="let row of speakers" (click)="selectSpeaker(row)" class="row speakers">
+            <ion-col class="col" size="4">{{row.speakerName}}</ion-col>
+            <ion-col class="col" size="4">{{row.speakerEmail}}</ion-col>
+            <ion-col class="col" size="4">{{row.speakerPhone}}</ion-col>
+          </ion-row>
+        </span>
+
+
+        <span *ngIf="speakerSearch">
+          <ion-row *ngFor="let row of speakerSearch" (click)="selectSpeaker(row)" class="row speakers">
+            <ion-col class="col" size="4">{{row.speakerName}}</ion-col>
+            <ion-col class="col" size="4">{{row.speakerEmail}}</ion-col>
+            <ion-col class="col" size="4">{{row.speakerPhone}}</ion-col>
+          </ion-row>
+        </span>
+      </span>
+    </ion-grid>
+  </div>
+</ion-content>

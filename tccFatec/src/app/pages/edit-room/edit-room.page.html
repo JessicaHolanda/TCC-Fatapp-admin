@@ -1,0 +1,81 @@
+<page-header title="Editar sala"></page-header>
+
+
+<ion-content color="tertiary">
+  <div class="container">
+    <div *ngIf="room" class="box">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-button (click)="removeRoom()" fill="outline">Remover sala</ion-button>
+              <ion-button (click)="openEditRoomModal(room)" fill="outline">Editar sala</ion-button>
+            </ion-item>
+            <ion-item lines="none">
+              <h1 class="page-title"><span>{{room.type}} </span><span>{{room.name}}</span></h1>
+            </ion-item>
+            <ion-item>
+              <h2 class="page-title">Capacidade: <span>{{room.capacity}}</span></h2>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+    <ion-grid class="box-secondary">
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="goToRegisterResource()" color="tertiary">Cadastrar recurso</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+    <div class="box">
+      <ion-grid>
+        <div>Adicionar recurso à sala</div>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-button (click)="goToAddResource()" fill="outline" slot="start">Adicionar/Alterar</ion-button>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="construct" slot="start"></ion-icon>
+              <ion-label>Recursos</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+      <div *ngIf="resourcesRoom">
+        <div class="resource-item" *ngFor="let resource of resourcesRoom">
+          <ion-grid class="ion-padding-top">
+            <ion-item lines="none">
+              <ion-button (click)="removeResourceRoom(resource.resource.id)" fill="outline">Remover da sala</ion-button>
+            </ion-item>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="none">
+                  <ion-label>{{resource.resource.name}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label>Quantidade: <span>{{resource.amount}}</span></ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

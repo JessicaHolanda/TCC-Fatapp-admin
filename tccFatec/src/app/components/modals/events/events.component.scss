@@ -1,0 +1,27 @@
+.btn-events{
+    width: 50%;
+    border-radius: 0;
+  }
+
+  .events{
+    font-size: 0.7rem;
+  }
+
+.header .col {
+    background-color:#696969;
+    color: white;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}

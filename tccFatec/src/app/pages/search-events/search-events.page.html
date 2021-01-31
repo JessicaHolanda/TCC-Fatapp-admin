@@ -1,0 +1,55 @@
+<main-header title="Pesquisar eventos"></main-header>
+<ion-content color="tertiary">
+
+
+  <div class="container">
+    <h1 class="page-title">Pesquisar eventos</h1>
+    <form [formGroup]="eventSearchForm">
+      <ion-grid class="box">
+        <ion-row>
+          <ion-col>
+            <ion-label position="fixed">Pesquisar:</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    <div class="ion-text-center">
+      <ion-button class="btn-events" (click)="getEventsSearch()">Pesquisar</ion-button>
+    </div>
+  </div>
+
+
+  <br>
+  <div class="container">
+    <div>Clique no evento para selecioná-lo</div>
+    <ion-grid class="box">
+      <ion-row class="row header events">
+        <ion-col class="col" size="3">Título</ion-col>
+        <ion-col class="col" size="3">Edição</ion-col>
+        <ion-col class="col" size="3">De</ion-col>
+        <ion-col class="col" size="3">Até</ion-col>
+      </ion-row>
+
+      <span *ngIf="events">
+        <span *ngIf="!eventSearch || eventSearch == ''">
+          <ion-row *ngFor="let row of events" (click)="selectEvent(row)" class="row events">
+            <ion-col class="col" size="3">{{row.title}}</ion-col>
+            <ion-col class="col" size="3">{{row.edition}}</ion-col>
+            <ion-col class="col" size="3">{{row.formatedInitialDate}}</ion-col>
+            <ion-col class="col" size="3">{{row.formatedFinalDate}}</ion-col>
+          </ion-row>
+        </span>
+      </span>
+
+      <span *ngIf="eventSearch">
+            <ion-row *ngFor="let row of eventSearch" (click)="selectEvent(row)" class="row events">
+              <ion-col class="col" size="3">{{row.title}}</ion-col>
+              <ion-col class="col" size="3">{{row.edition}}</ion-col>
+              <ion-col class="col" size="3">{{row.formatedInitialDate}}</ion-col>
+              <ion-col class="col" size="3">{{row.formatedFinalDate}}</ion-col>
+          </ion-row>
+        </span>
+    </ion-grid>
+  </div>
+</ion-content>

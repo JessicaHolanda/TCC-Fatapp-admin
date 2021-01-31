@@ -1,0 +1,30 @@
+<page-header title="Inscrições"></page-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+        <ion-card-header>
+          <ion-card-title>Total de Inscritos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #barChartAll></canvas>
+        </ion-card-content>
+      </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-title>Inscritos que compareceram na atividade</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barChartAttended></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-title>Inscritos que não compareceram na atividade</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barChartNoAttended></canvas>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

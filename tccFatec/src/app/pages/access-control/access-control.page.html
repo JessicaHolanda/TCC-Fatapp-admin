@@ -1,0 +1,49 @@
+<main-header title="Controle de acesso"></main-header>
+
+<ion-content color="tertiary">
+    <div class="container">
+        <h1 class="page-title">Controle de acesso</h1>
+        <form [formGroup]="accessControlForm" class="box-access-control">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-label position="fixed">Pesquisar:</ion-label>
+                        <ion-input formControlName="name"></ion-input>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div text-center>
+                <ion-button class="btn-access-control" (click)="getUserSearch()">Pesquisar</ion-button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class='container'>
+        <ion-grid class="box-access-control">
+            <ion-row class="row header users-access-control">
+                <ion-col class="col" size="3">Nome</ion-col>
+                <ion-col class="col" size="3">CPF</ion-col>
+                <ion-col class="col" size="3">E-mail</ion-col>
+                <ion-col class="col" size="3">Perfil</ion-col>
+            </ion-row>
+            <span *ngIf="!userSearch || userSearch == ''">
+                <ion-row (click)="goToChangePerfilModal(row)" class="row users-access-control"
+                    *ngFor="let row of users">
+
+                    <ion-col class="col" size="3">{{row.name}} {{row.last_name}}</ion-col>
+                    <ion-col class="col" size="3">{{row.cpf}}</ion-col>
+                    <ion-col class="col" size="3">{{row.email}}</ion-col>
+                    <ion-col class="col" size="3">{{row.user_type}}</ion-col>
+                </ion-row>
+            </span>
+            <span *ngIf="userSearch">
+                <ion-row (click)="goToChangePerfilModal(row)" class="row users-access-control" *ngFor="let row of userSearch">
+                        <ion-col class="col" size="3">{{row.name}} {{row.last_name}}</ion-col>
+                        <ion-col class="col" size="3">{{row.cpf}}</ion-col>
+                        <ion-col class="col" size="3">{{row.email}}</ion-col>
+                        <ion-col class="col" size="3">{{row.user_type}}</ion-col>
+                </ion-row>
+            </span>
+        </ion-grid>
+    </div>
+</ion-content>

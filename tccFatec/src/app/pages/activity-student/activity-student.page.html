@@ -1,0 +1,65 @@
+<page-header title="Lista de presença"></page-header>
+
+
+<ion-content>
+    <div *ngIf="activity" class='container'>
+            <div class="ion-padding-top ion-text-right aligner-qr-code">
+                    <img class="qr-code-img" [attr.src]="ImgVar | secureimages | async" />
+                </div>
+        <ion-grid class='box-present-list'>
+            <ion-row class="row header users-present-list">
+                <ion-col class="col">
+                    Atividade
+                </ion-col>
+                <ion-col class="col">
+                    Palestrante
+                </ion-col>
+                <ion-col class="col">
+                    Horário
+                </ion-col>
+                <ion-col class="col">
+                    Local
+                </ion-col>
+            </ion-row>
+            <ion-row class="row users-present-list">
+                <ion-col class="col">
+                    {{activity.title}}
+                </ion-col>
+                <ion-col class="col">
+                    {{activity.speaker.speakerName}}
+                </ion-col>
+                <ion-col class="col">
+                    {{activity.formatedInitialTime}} - {{activity.formatedFinalTime}}
+                </ion-col>
+                <ion-col class="col">
+                    {{activity.room.type}} - {{activity.room.name}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class='box-present-list ion-margin-top'>
+            <div>Informações sobre inscritos</div>
+            <ion-row class="row header users-present-list">
+                <ion-col class="col">Nome</ion-col>
+                <ion-col class="col">RA</ion-col>
+                <ion-col class="col">RG</ion-col>
+                <ion-col class="col">Curso/Turma</ion-col>
+                <ion-col class="col">Assinatura</ion-col>
+            </ion-row>
+            <span *ngIf="subscribers">
+                <span *ngFor="let subscriber of subscribers.subscriptions">
+                    <ion-row class="row users-present-list">
+                        <ion-col class="col">{{subscriber.user.name}}</ion-col>
+                        <ion-col class="col"><span *ngIf="subscriber.user.student">{{subscriber.user.student.ra}}</span>
+                        </ion-col>
+                        <ion-col class="col"></ion-col>
+                        <ion-col class="col"><span
+                                *ngIf="subscriber.user.student">{{subscriber.user.student.course.acronym}}</span>
+                        </ion-col>
+                        <ion-col class="col"><span *ngIf="subscriber.attended">via Fatapp</span></ion-col>
+                    </ion-row>
+                </span>
+            </span>
+        </ion-grid>
+
+    </div>
+</ion-content>

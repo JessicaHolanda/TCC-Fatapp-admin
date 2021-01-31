@@ -1,0 +1,26 @@
+<modal-header title="Enviar email"></modal-header>
+<ion-content color="tertiary">
+  <div class="container">
+    <form [formGroup]="sendEmailForm" class="box">
+      <div text-center>
+        <img class="page-icon" src="../../../../assets/imgs/letter.png">
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-input formControlName="email" placeholder="E-mail">
+            </ion-input>
+            <ng-container *ngFor="let validation of validationMessages.email">
+              <div class="error-message"
+                *ngIf="sendEmailForm.get('email').hasError(validation.type) && (sendEmailForm.get('email').dirty || sendEmailForm.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="ion-padding-top ion-padding-bottom ion-text-center">
+        <ion-button class="ion-text-center" (click)="submit()">Enviar e-mail</ion-button>
+      </div>
+    </form>
+

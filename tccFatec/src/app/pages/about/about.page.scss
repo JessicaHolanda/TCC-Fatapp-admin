@@ -1,0 +1,50 @@
+
+
+hr.principal{
+   border: 0;
+   background: #999; 
+   margin-right: 30px;
+   margin-left: 30px;
+}
+
+hr.sub{
+   border: 0;
+   background:  var(--ion-color-scrum-master); 
+   margin-right: 50%;
+   margin-left: 30px;
+}
+
+.scrum-Master{
+ font-size: 13px;
+ color: var(--ion-color-scrum-master);
+}
+
+.product-owner{
+    font-size:30px;
+    color: var(--ion-color-product-owner);
+}
+
+.orientador{
+    color: var(--ion-color-orientador)
+}
+
+h1.sub-title{
+    margin-left: 20px;
+}
+
+img.linkedin{
+    width: 50px;
+    height: 50px;
+}
+
+ion-card{
+    margin-right: 30px;
+    margin-left: 30px;  
+}
+
+.resumo{
+    margin-right: 30px;
+    margin-left: 30px; 
+    line-height: 150%;
+    text-align: justify;
+}

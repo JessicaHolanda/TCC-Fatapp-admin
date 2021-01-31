@@ -1,0 +1,69 @@
+<modal-header title="Adicionar sala"></modal-header>
+<ion-content color="tertiary">
+    <div class="container">
+        <form [formGroup]="formRoom" padding-top class="box">
+            <div text-center>
+                <img class="page-icon" src="../../../../assets/imgs/porta.png">
+            </div>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-label>
+                            Número:
+                        </ion-label>
+                    </ion-col>
+                    <ion-col>
+                            <ion-label>
+                                Tipo:
+                            </ion-label>
+                        </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input formControlName="number" placeholder="Número da sala"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.number">
+                            <div class="error-message"
+                                *ngIf="formRoom.get('number').hasError(validation.type) && (formRoom.get('number').dirty || formRoom.get('number').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                    <ion-col>
+                        <ion-select formControlName="type" placeholder="Tipo da sala">
+                            <ion-select-option>Sala</ion-select-option>
+                            <ion-select-option>Laboratório</ion-select-option>
+                            <ion-select-option>Auditório</ion-select-option>
+                        </ion-select>
+                        <ng-container *ngFor="let validation of validationMessages.type">
+                            <div class="error-message"
+                                *ngIf="formRoom.get('type').hasError(validation.type) && (formRoom.get('type').dirty || formRoom.get('type').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-label>
+                            Capacidade:
+                        </ion-label>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input formControlName="capacity" placeholder="Qtd de pessoas"></ion-input>
+                        <ng-container *ngFor="let validation of validationMessages.capacity">
+                            <div class="error-message"
+                                *ngIf="formRoom.get('capacity').hasError(validation.type) && (formRoom.get('capacity').dirty || formRoom.get('capacity').touched)">
+                                {{ validation.message }}
+                            </div>
+                        </ng-container>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div padding-top padding-bottom text-center>
+                <ion-button text-center (click)="submit()">Adicionar sala</ion-button>
+            </div>
+        </form>
+    </div>
+</ion-content>
